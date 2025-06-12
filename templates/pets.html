@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Available Pets - PetAdopt</title>
+
+  <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fefefe;
+    }
+
+    header {
+      background-color: #ff6f61;
+      color: white;
+      padding: 20px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .page-header {
+      background-color: #fff5f5;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .page-header h2 {
+      color: #ff6f61;
+    }
+
+    .search-bar {
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    .pet-card img {
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .pet-card .card-body h5 {
+      color: #ff6f61;
+    }
+
+    .adopt-btn {
+      background-color: #28a745;
+      border: none;
+    }
+
+    .adopt-btn:hover {
+      background-color: #218838;
+    }
+
+    footer {
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header style="margin: 0;padding: 0;">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="padding: 10px; margin: 0;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <i class="fa fa-paw" aria-hidden="true" style="margin-right: 8px;"></i>PetAdopt
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About#team">Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Pets">Pets</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+  <div class="page-header">
+    <h2>Find Your Perfect Companion</h2>
+    <p>Browse pets available for adoption</p>
+  </div>
+
+  <div class="search-bar text-center">
+    <input type="text" class="form-control" placeholder="Search by name, breed, or type">
+  </div>
+
+  <div class="container py-4">
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="card pet-card shadow-sm">
+          <img src="https://placedog.net/500?id=1" class="card-img-top" alt="Max the dog">
+          <div class="card-body">
+            <h5 class="card-title">Max</h5>
+            <p class="card-text">Golden Retriever · 3 Years Old</p>
+            <a href="#" class="btn adopt-btn text-white w-100"><i class="fa fa-heart"></i> Adopt</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card pet-card shadow-sm">
+          <img src="data:image/jpeg;base64,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" class="card-img-top" alt="Luna the cat">
+          <div class="card-body">
+            <h5 class="card-title">Luna</h5>
+            <p class="card-text">Persian Cat · 1.5 Years Old</p>
+            <a href="#" class="btn adopt-btn text-white w-100"><i class="fa fa-heart"></i> Adopt</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card pet-card shadow-sm">
+          <img src="https://placedog.net/500?id=2" class="card-img-top" alt="Rocky the dog">
+          <div class="card-body">
+            <h5 class="card-title">Rocky</h5>
+            <p class="card-text">Beagle · 2 Years Old</p>
+            <a href="#" class="btn adopt-btn text-white w-100"><i class="fa fa-heart"></i> Adopt</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card pet-card shadow-sm">
+          <img src="data:image/jpeg;base64,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" class="card-img-top" alt="Milo the cat">
+          <div class="card-body">
+            <h5 class="card-title">Milo</h5>
+            <p class="card-text">Maine Coon · 4 Months Old</p>
+            <a href="#" class="btn adopt-btn text-white w-100"><i class="fa fa-heart"></i> Adopt</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 PetAdopt | All pets deserve a loving home 🐾</p>
+    <p>Contact us at <a href="mailto:contact@petadopt.org">contact@petadopt.org</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

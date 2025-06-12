@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetAdopt - Adopt Your New Best Friend</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fdfdfd;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #dc3545;
+            color: #fff;
+            padding: 24px 0 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #ffd6d6;
+        }
+
+        .hero {
+            background: url('https://images.unsplash.com/photo-1558788353-f76d92427f16') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h2 {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-dark {
+            color: #222;
+        }
+
+        .text-danger {
+            color: #dc3545;
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .py-5 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .bg-light {
+            background: #f8f9fa;
+        }
+
+        .bg-white {
+            background: #fff;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -16px;
+            margin-right: -16px;
+        }
+
+        .g-4 {
+            gap: 1.5rem;
+        }
+
+        .col-md-4 {
+            flex: 0 0 32%;
+            max-width: 32%;
+            min-width: 280px;
+            box-sizing: border-box;
+            border-radius: 20px;
+            box-shadow: 10px 10px 10px rgb(87, 96, 100);
+            margin: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .col-md-4 {
+                flex: 0 0 48%;
+                max-width: 48%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        .pet-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: #222 0px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .pet-card img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+            display: block;
+        }
+
+        .pet-card:hover {
+            transform: scale(1.02);
+        }
+
+        .pet-card .card-body {
+            padding: 18px;
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pet-card .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .pet-card .card-text {
+            font-size: 1rem;
+            margin-bottom: 14px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #b52a37;
+        }
+
+        .btn.w-100 {
+            width: 100%;
+        }
+
+        .btn.mt-3 {
+            margin-top: 1rem;
+        }
+
+        .cta {
+            background-color: #ff6f61;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .cta a.btn {
+            background-color: white;
+            color: #ff6f61;
+            border: 2px solid #ff6f61;
+            margin-top: 1rem;
+        }
+
+        .cta a.btn:hover {
+            background: #ffe5e1;
+            color: #ff6f61;
+        }
+
+        .contact-form {
+            background-color: #f5f5f5;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .contact-form .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .contact-form .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 16px;
+            font-size: 1rem;
+            background: #fff;
+            box-sizing: border-box;
+            transition: border 0.2s;
+        }
+
+        .contact-form .form-control:focus {
+            border-color: #dc3545;
+            outline: none;
+        }
+
+        .contact-form textarea.form-control {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            background: #eee;
+        }
+
+        .map-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            border: 0;
+        }
+
+        footer {
+            background-color: #222;
+            color: #ccc;
+            padding: 24px 0 10px 0;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #ff6f61;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <header style="margin: 0;padding: 0;">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="padding: 10px; margin: 0;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <i class="fa fa-paw" aria-hidden="true" style="margin-right: 8px;"></i>PetAdopt
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About">Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Pets">Pets</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ url_for('static', filename='images/c1.jpg') }}" alt="..." style="width: 100%; height: 600px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/c2.jpg') }}" alt="..." style="width: 100%; height: 600px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/c3.jpg') }}" class="d-block w-100" alt="..." style="width: 100%; height: 600px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/c4.jpg') }}" alt="..." style="width: 100%; height: 600px; object-fit: cover;">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <section class="py-5 text-center bg-light">
+        <div class="container">
+            <h2 class="text-danger mb-3">About Us</h2>
+            <p>We are a non-profit organization in India helping homeless pets find loving homes. With over 5,000
+                successful adoptions, our mission is to connect compassionate families with furry companions.</p>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container" style="margin-bottom: 30px;padding: 30px;">
+            <h2 class="text-center text-dark mb-4">Available Pets for Adoption</h2>
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="{{ url_for('static', filename='images/dog1.jpeg') }}" alt="Dog 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Max</h5>
+                            <p class="card-text"><i class="fa fa-dog"></i> Golden Retriever | 3 years</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="{{ url_for('static', filename='images/cat1.jpeg') }}" alt="Cat Luna">
+                        <div class="card-body">
+                            <h5 class="card-title">Luna</h5>
+                            <p class="card-text"><i class="fa fa-cat"></i> Persian | 1.5 years</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="{{ url_for('static', filename='images/dog2.jpg') }}" alt="Dog 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Rocky</h5>
+                            <p class="card-text"><i class="fa fa-dog"></i> Beagle | 2 years</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Q2F0fGVufDB8fDB8fHww"
+                            alt="Dog Bella">
+                        <div class="card-body">
+                            <h5 class="card-title">Bella</h5>
+                            <p class="card-text"><i class="fa fa-dog"></i> Labrador | 4 years</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q2F0fGVufDB8fDB8fHww"
+                            alt="Cat Simba">
+                        <div class="card-body">
+                            <h5 class="card-title">Simba</h5>
+                            <p class="card-text"><i class="fa fa-cat"></i> Siamese | 2 years</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Q2F0fGVufDB8fDB8fHww"
+                            alt="Dog Bruno">
+                        <div class="card-body">
+                            <h5 class="card-title">Bruno</h5>
+                            <p class="card-text"><i class="fa fa-dog"></i> Indie | 1 year</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1664299749481-ac8dc8b49754?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fENhdHxlbnwwfHwwfHx8MA%3D%3D"
+                            alt="Rabbit Snowy">
+                        <div class="card-body">
+                            <h5 class="card-title">Snowy</h5>
+                            <p class="card-text"><i class="fa fa-paw"></i> Rabbit | 8 months</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fENhdHxlbnwwfHwwfHx8MA%3D%3D"
+                            alt="Dog Daisy">
+                        <div class="card-body">
+                            <h5 class="card-title">Daisy</h5>
+                            <p class="card-text"><i class="fa fa-dog"></i> Pug | 5 years</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pet-card">
+                        <img src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=300"
+                            alt="Cat Ginger">
+                        <div class="card-body">
+                            <h5 class="card-title">Ginger</h5>
+                            <p class="card-text"><i class="fa fa-cat"></i> Tabby | 3 years</p>
+                            <a href="#" class="btn btn-success">Adopt</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+        <h2>Want to Help More?</h2>
+        <p>Donate or volunteer to make a bigger impact!</p>
+        <a href="#" class="btn">Get Involved</a>
+    </section>
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center text-dark mb-4">Contact Us</h2>
+            <div class="row g-4">
+                <div class="col-md-6" style="flex: 0 0 48%; max-width: 48%; min-width: 280px;">
+                    <form class="contact-form">
+                        <div class="mb-3">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="4" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="col-md-6" style="flex: 0 0 48%; max-width: 48%; min-width: 280px;">
+                    <div class="map-responsive">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.2168577438055!2d88.36389531528156!3d22.675752734767498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027669e44f42d9%3A0xb7825cd276a4d44e!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1700000000000"
+                            width="600" height="450" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 PetAdopt | Built with love for animals 🐶🐱</p>
+        <p>Email: <a href="mailto:contact@petadopt.org">contact@petadopt.org</a></p>
+    </footer>
+</body>
+
+</html>
