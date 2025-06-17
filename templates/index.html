@@ -384,7 +384,7 @@
     <section class="py-5 bg-white">
         <div class="container" style="margin-bottom: 30px;padding: 30px;">
             <h2 class="text-center text-dark mb-4">Available Pets for Adoption</h2>
-            <div class="row g-4 justify-content-center">
+            <div class="row g-6 justify-content-center">
 
                 <div class="col-md-4">
                     <div class="pet-card">
@@ -505,18 +505,18 @@
             <h2 class="text-center text-dark mb-4">Contact Us</h2>
             <div class="row g-4">
                 <div class="col-md-6" style="flex: 0 0 48%; max-width: 48%; min-width: 280px;">
-                    <form class="contact-form">
+                    <form class="contact-form" action="/Contact" method="POST">
                         <div class="mb-3">
                             <label class="form-label">Your Name</label>
-                            <input type="text" class="form-control" placeholder="Enter your name">
+                            <input type="text" class="form-control" name="name" placeholder="Enter your name">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" placeholder="Enter your email">
+                            <input type="email" class="form-control" name="email" placeholder="Enter your email">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" rows="4" placeholder="Your message..."></textarea>
+                            <textarea class="form-control" rows="4" name="message" placeholder="Your message..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-danger w-100">Send Message</button>
                     </form>
