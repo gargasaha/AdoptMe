@@ -1,4 +1,5 @@
 from flask import Flask,render_template,request,redirect
+import base64
 import mysql.connector
 app=Flask(__name__ )
 
@@ -39,18 +40,18 @@ def Pets():
 
 @app.route('/Contact',methods=['POST'])
 def Contact():
-    if request.method=="POST":
-        print(request.form['name'], request.form['email'], request.form['message'])
-        conn=dbConnect()
-        cursor=conn.cursor()
-        cursor.execute("INSERT INTO contact (name, email, message) VALUES (%s, %s, %s)", 
-                       (request.form['name'], request.form['email'], request.form['message']))
+    if request.method == "POST":
+        print(request.form['name'], request.form['email'], request.form['message'], request.files['img'])
+        conn = dbConnect()
+        cursor = conn.cursor()
+        cursor.execute(
+            "INSERT INTO contact (name, email, message, img) VALUES (%s, %s, %s, %s)",
+            (request.form['name'], request.form['email'], request.form['message'], request.files['img'].read())
+        )
         conn.commit()
         cursor.close()
         conn.close()
-
         return redirect('/')
-    
 @app.route('/view')
 def getData():
     conn=dbConnect()
@@ -98,5 +99,18 @@ def actualUpdate():
     conn.close()    
 
     return redirect('/view')
+
+
+@app.route('/viewSingle/<int:id>',methods=['GET'])
+def viewSingle(id):
+    con = dbConnect()
+    cursor = con.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM contact WHERE id = %s", (id,))
+    data = cursor.fetchone()
+    cursor.close()
+    con.close()
+    if data and data.get('img'):
+        data['img'] = base64.b64encode(data['img']).decode('utf-8')
+    return render_template('viewSingle.html', data=data)
 if __name__ == '__main__':
     app.run(debug=True,port=8000)

@@ -20,13 +20,13 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Message</th>
-                    <th>Actions</th>
+                    <th style="text-align: center;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for data in data%}
                 <tr>
-                    <th>{{data.id}}</th>
+                    <th>{{loop.index}}</th>
                     {% if message != data.id %}
                     <td>{{data.name}}</td>
                     <td>{{data.email}}</td>
@@ -43,6 +43,7 @@
                         <a href="/delete/{{data.id}}" class="btn btn-danger btn-sm mx-3">Delete</a>
                         {% if message != data.id %}
                         <a href="/update/{{data.id}}" class="btn btn-danger btn-sm mx-3">Edit</a>
+                        <a href="/viewSingle/{{data.id}}" class="btn btn-primary btn-sm mx-3">View</a>
                         {% else %}
                         <button type="submit" class="btn btn-success btn-sm mx-3">Save</button>
                         <a href="/view" class="btn btn-secondary btn-sm mx-3">Cancel</a>
